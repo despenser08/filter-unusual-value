@@ -1,0 +1,21 @@
+{
+  "name": "filter-unusual-value",
+  "version": "0.0.1",
+  "description": "Filter unusual value",
+  "main": "src/index.ts",
+  "scripts": {
+    "filter": "ts-node .",
+    "json": "ts-node ./src/json.ts",
+    "json:split": "ts-node ./src/jsonSplit.ts"
+  },
+  "author": "despenser08",
+  "license": "MIT",
+  "dependencies": {
+    "clipboardy": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  }
+}
