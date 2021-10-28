@@ -105,3 +105,7 @@ dist
 
 # Config
 config.ts
+
+# Data
+out/
+result-*.json
