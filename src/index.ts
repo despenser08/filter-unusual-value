@@ -9,6 +9,7 @@ import {
   saveCode,
   saveFiltered,
   savePath,
+  showFiltered,
 } from "./config";
 import { BotStat } from "./types";
 
@@ -70,7 +71,7 @@ async function filter(data: BotStat[]) {
       const filterRes = { filtered: stat, prev: prevData };
       filtered.push(filterRes);
       currentFiltered.push(filterRes);
-      console.log(filterRes);
+      if (showFiltered) console.log(filterRes);
     }
 
     index++;
