@@ -15,20 +15,10 @@ BotDB.findOne({ id }).then((data) => {
   const second = data.stats.splice(-split);
 
   message.channel.send({
-    files: [
-      new MessageAttachment(
-        Buffer.from(JSON.stringify(first, null, 2)),
-        \`result-\${id}-1.json\`
-      ),
-    ],
+    files: [new MessageAttachment(Buffer.from(JSON.stringify(first, null, 2)), \`result-\${id}-1.json\`)]
   });
   message.channel.send({
-    files: [
-      new MessageAttachment(
-        Buffer.from(JSON.stringify(second, null, 2)),
-        \`result-\${id}-2.json\`
-      ),
-    ],
+    files: [new MessageAttachment(Buffer.from(JSON.stringify(second, null, 2)), \`result-\${id}-2.json\`)]
   });
 });
 

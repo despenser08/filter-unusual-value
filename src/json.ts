@@ -11,12 +11,7 @@ const id = "${botId}";
 
 BotDB.findOne({ id }).then((data) =>
   message.channel.send({
-    files: [
-      new MessageAttachment(
-        Buffer.from(JSON.stringify(data.stats, null, 2)),
-        \`result-\${id}.json\`
-      ),
-    ],
+    files: [new MessageAttachment(Buffer.from(JSON.stringify(data.stats, null, 2)), \`result-\${id}.json\`)]
   })
 );
 
