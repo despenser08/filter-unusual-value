@@ -1,16 +1,7 @@
 import clipboardy from "clipboardy";
 import fs from "fs/promises";
 import path from "path";
-import {
-  botId,
-  dataFile,
-  differenceFilter,
-  normalLowestValue,
-  saveCode,
-  saveFiltered,
-  savePath,
-  showFiltered,
-} from "./config";
+import { botId, dataFile, differenceFilter, saveCode, saveFiltered, savePath, showFiltered } from "./config";
 import { BotStat } from "./types";
 
 let filteredDates: number[] = [];
@@ -41,11 +32,7 @@ BotDB.findOne({ id: "${botId}" }).then((bot) => {
     }
   }
 
-  if (saveFiltered)
-    await fs.writeFile(
-      path.join(savePath, "result.json"),
-      JSON.stringify(filtered, null, 2)
-    );
+  if (saveFiltered) await fs.writeFile(path.join(savePath, "result.json"), JSON.stringify(filtered, null, 2));
 
   if (saveCode) await fs.writeFile(path.join(savePath, "code.txt"), code);
 
@@ -62,10 +49,7 @@ async function filter(data: BotStat[]) {
     const prevData = data[data.findIndex((value) => value === stat) - 1];
     if (!prevData) continue;
 
-    if (
-      prevData.servers - stat.servers > differenceFilter ||
-      stat.servers < normalLowestValue
-    ) {
+    if (prevData.servers - stat.servers > differenceFilter) {
       const filterRes = { filtered: stat, prev: prevData };
       filtered.push(filterRes);
       currentFiltered.push(filterRes);
@@ -87,14 +71,7 @@ async function filter(data: BotStat[]) {
 const awaitFilter = (data: BotStat[]) =>
   new Promise(async (resolve) => {
     while (true) {
-      const result = await filter(
-        data.filter(
-          (value) =>
-            !filtered
-              .map((globalFilter) => globalFilter.filtered)
-              .includes(value)
-        )
-      );
+      const result = await filter(data.filter((value) => !filtered.map((globalFilter) => globalFilter.filtered).includes(value)));
 
       if (result.length === 0) return resolve(null);
       console.log(`Filtered: ${filtered.length} (Current: ${result.length})`);
