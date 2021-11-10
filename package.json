@@ -6,7 +6,8 @@
   "scripts": {
     "filter": "ts-node .",
     "json": "ts-node ./src/json.ts",
-    "json:split": "ts-node ./src/jsonSplit.ts"
+    "json:split": "ts-node ./src/jsonSplit.ts",
+    "deletenull": "ts-node ./src/deleteNull.ts"
   },
   "author": "despenser08",
   "license": "MIT",

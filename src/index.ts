@@ -19,8 +19,9 @@ const BotDB = require("../../../../dist/lib/database/models/Bot").default;
 const removeDate = [${filteredDates.join(", ")}];
 
 BotDB.findOne({ id: "${botId}" }).then((bot) => {
+  const length = bot.stats.length;
   bot.stats = bot.stats.filter((stat) => !removeDate.includes(new Date(stat.updated).getTime()));
-  return bot.save().then((bot) => \`Stats: \${bot.stats.length}\`);
+  return bot.save().then((bot) => \`Stats: \${bot.stats.length} (Filtered: \${length - bot.stats.length})\`);
 });
 \`\`\``;
 
